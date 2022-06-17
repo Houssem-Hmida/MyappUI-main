@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+* {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.black-snackbar{
+  margin-bottom:8em !important;
+padding: 1.5em !important;
+  background: rgb(240, 16, 16) !important;
+  color: white !important;
+}
+
+.green-snackbar{
+  background: #3273cd !important;
+  color: white;
+}
+
+.mat-snack-bar-container{
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgb(255 255 255) !important;
+}

@@ -1,0 +1,170 @@
+ 
+
+
+        <h3 style="text-align:center; color: #3f51b5;">Mon compte</h3>
+    <mat-tab-group >
+      <mat-tab label="Informations personnelles">
+        <div style=" padding-top: 2%;   text-align: -webkit-center;
+        ">
+        <mat-card style="margin-top: 1%;margin-left: 10%;margin-right: 10%;" class="example-card">
+         
+         
+
+<form (ngSubmit)="confirmUpdate()" [formGroup]="accountDetail">
+  <div fxFlex fxLayout="column">
+    <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Prénom </mat-label>
+      <mat-icon matPrefix>people</mat-icon>
+      <input style="padding-left: 2.5%;" matInput formControlName="fname" type="text"  />
+    </mat-form-field>
+  </div>
+
+  <div >
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Nom </mat-label>
+      <mat-icon matPrefix>people</mat-icon>
+      <input style="padding-left: 2.5%;" matInput formControlName="lname" type="text" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Adresse </mat-label>
+      <mat-icon matPrefix>location_city</mat-icon>
+      <input style="padding-left: 2.5%;" matInput formControlName="ads" type="text" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Numéro de téléphone </mat-label>
+      <mat-icon matPrefix>local_phone</mat-icon>
+      <input style="padding-left: 2.5%;" matInput formControlName="phnbr" type="text" />
+    </mat-form-field>
+  </div>
+  
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;"> Choisir Date de naissance</mat-label>
+      <mat-icon matPrefix>today</mat-icon>
+      <input  style="padding-left: 2.5%;" [min]="minDate" [max]="maxDate" formControlName="bdate" matInput [matDatepicker]="picker">
+      <mat-hint style="padding-left: 6%;">MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="accountDetail.controls.bdate.touched && accountDetail.controls.bdate.invalid">
+        <span *ngIf="accountDetail.controls.bdate.errors.required"> Ce champ est obligatoire</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div style="text-align: start; padding-top:2% ;" appearence="fill" fxFlex class="input mtfldwrapper" >
+    <mat-icon  matPrefix>accessibility_new</mat-icon>
+      <mat-label style="padding-left: 2.5%;"> Sexe :    </mat-label>
+      
+    <mat-radio-group formControlName="gender" (change)="onDataChange($event)">
+      <mat-radio-button [disabled]="!disabled" style="padding-left:2%" value="Homme">Homme</mat-radio-button>
+      <mat-radio-button  [disabled]="!disabled" style="padding-left:2%"  value="Femme">Femme</mat-radio-button>
+    </mat-radio-group>
+ 
+  </div>
+  <div mat-dialog-actions style="padding-top: 4%; margin-bottom: 3%;" fxLayoutAlign="end end">
+
+    <button   *ngIf="disabled==false" (click)="mettre()"   class="mat-raised-actions" style="background-color: #3f51b5; color: white;" >
+        {{ "Mettre à jour"  }}
+    </button>
+
+  <button  *ngIf="disabled==true" (click)="annuler()"   class="mat-raised-actions" style="background-color: #cd1b2d; color: white;" type="submit" >
+    {{ "Annuler"  }}
+</button>
+<div style="padding-left:3%">
+<button  *ngIf="disabled==true"    class="mat-raised-actions" style="background-color: #3f51b5; color: white;" >
+  {{ "Modifier"  }}
+</button>
+</div>
+</div>
+
+  </div>
+</form>
+
+          <mat-card-content>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <!--****************************** Settings **************************************-->
+      <mat-tab label="Changer mot de passe">
+        <div style=" padding-top: 4%;   text-align: -webkit-center;
+        ">
+        <mat-card style="margin-bottom: 1%;margin-top: 1%;margin-left: 1%;margin-right: 1%;" class="example-card">
+         
+
+  <form  [formGroup]="changePasswordForm" style="  max-height: 70%">
+  <div fxFlex fxLayout="column">
+    
+    <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+      <mat-label style="padding-left: 2.5%;" >Mot de passe actuel</mat-label>
+      <mat-icon matPrefix>password</mat-icon>
+              <input style="padding-left: 2.5%;" type="password" matInput formControlName="oldPassword"   required >
+              <mat-error *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">Ce champ est obligatoire</span>
+              </mat-error>
+    </mat-form-field>
+  </div>
+
+<div>
+  <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+
+  <mat-label style="padding-left: 2.5%;" >Nouveau mot de passe</mat-label>
+      <mat-icon matPrefix>password</mat-icon>
+      <input type="password" matInput formControlName="newPassword"  required >
+      <mat-error *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
+        <span *ngIf="changePasswordForm.controls.newPassword.errors.required">Ce champ est obligatoire</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearence="fill" fxFlex class="input mtfldwrapper">
+
+    <mat-label style="padding-left: 2.5%;" >Confirmer le nouveau mot de passe</mat-label>
+        <mat-icon matPrefix>password</mat-icon>
+        <input type="password" matInput formControlName="confirmPassword"  required>
+  <mat-error *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
+    <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">Ce champ est obligatoire</span>
+  </mat-error>
+  <mat-hint *ngIf="validateSumbit() && !(changePasswordForm.controls.confirmPassword.invalid)">
+    <span style="color:red;"> Les entrées dans les champs "Nouveau mot de passe" et "Confirmer le nouveau mot de passe" ne sont pas identiques.</span>
+  </mat-hint>
+      </mat-form-field>
+    </div>
+  
+    
+  <div mat-dialog-actions style="padding-top: 4%;" fxLayoutAlign="end end">
+
+    <button     class="mat-raised-actions" style="background-color: #3f51b5; color: white;" (click)="handleChangePasswordSubmit()" 
+    [disabled]="validateSumbit() || !(changePasswordForm.valid && changePasswordForm.dirty)">
+        {{ "Mettre à jour"  }}
+    </button>
+</div>
+
+  </div>
+ 
+ 
+
+</form>
+
+          <mat-card-content>
+           
+          </mat-card-content>
+ 
+        </mat-card>
+      </div>
+
+
+    </mat-tab>
+  </mat-tab-group>
+
+
+      

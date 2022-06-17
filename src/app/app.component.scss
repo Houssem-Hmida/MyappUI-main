@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  mat-drawer {
+    width: 260px;
+  }
+  mat-drawer-container {
+    height: 100%;
+  }
+  
+  mat-drawer {
+    background: linear-gradient(195deg, #3943B7 0%, #449DD1 100%);
+  }
+  /*
+  app-sidenav{
+    background-image: linear-gradient(195deg, #b6d0e7 0%, #00294c 100%)
+  };
+
+  */
+
+ /* @media only screen and (max-width: 1026px) {
+    .sidebar {
+      width: 180px;
+      //display: none;
+        }
+}
+*/
